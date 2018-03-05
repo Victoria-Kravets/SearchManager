@@ -1,0 +1,8 @@
+*.git
+build/
+DerivedData/
+**/*.xcuserstate
+**/xcuserdata/
+UserInterfaceState.xcuserstate
+Pods/
+CocoaPods
