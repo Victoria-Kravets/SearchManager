@@ -39,6 +39,6 @@ public class DataCell: UITableViewCell {
     }
     
     private func configureImage() {
-        self.photoImage = UIImage()
+       // self.photoImage = UIImage()
     }
 }
