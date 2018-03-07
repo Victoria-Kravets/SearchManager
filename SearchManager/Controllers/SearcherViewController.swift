@@ -18,16 +18,8 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchBar = UISearchBar()
-        tableView?.delegate = self
-        tableView?.dataSource = self
-        
-        searchBar?.delegate = self
-        searchBar?.returnKeyType = UIReturnKeyType.done
-        searchBar?.frame = CGRect(x: 0, y: 20, width: 415, height: 50)
-        view.addSubview(searchBar!)
-        tableView?.frame = CGRect(x: 0, y:71, width: 415, height: 550)
-        view.addSubview(tableView!)
+        self.configureSearchBar()
+        self.configureTableView()
         
     }
 
@@ -59,9 +51,30 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    // MARK: -
+    // MARK: SearchBar
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
     }
 
+    // MARK: -
+    // MARK: Private
+    
+    private func configureTableView() {
+        self.tableView?.delegate = self
+        self.tableView?.dataSource = self
+        
+        self.tableView?.frame = CGRect(x: 0, y:71, width: 415, height: 550)
+        self.tableView.do(self.view.addSubview(_:))
+    }
+    private func configureSearchBar() {
+        self.searchBar = UISearchBar()
+        self.searchBar?.delegate = self
+        
+        self.searchBar?.returnKeyType = UIReturnKeyType.done
+        self.searchBar?.frame = CGRect(x: 0, y: 20, width: 415, height: 50)
+        self.searchBar.do(self.view.addSubview(_:))
+    }
 }
 
