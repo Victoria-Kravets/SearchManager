@@ -23,10 +23,6 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: -
     // MARK: TableView
@@ -44,11 +40,13 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DataCell {
+            cell.fill(name: "1")
             
-        cell.textLabel?.text = "1"
-            
-        return cell
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     // MARK: -
@@ -65,7 +63,7 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
         
-        self.tableView?.frame = CGRect(x: 0, y:71, width: 415, height: 550)
+        self.tableView?.frame = CGRect(x: 0, y: 71, width: 415, height: 550)
         self.tableView.do(self.view.addSubview(_:))
     }
     private func configureSearchBar() {
