@@ -9,29 +9,29 @@ import Foundation
 import RealmSwift
 import ObjectMapper
 
-public class Post: Object, Mappable {
+public class Post: Object {
     
     // MARK: -
     // MARK: Properties
     
     @objc dynamic var name: String?
-    @objc dynamic var imageUrl: Image?
+    @objc dynamic var imageUrl: String?
     
     // MARK: -
     // MARK: Init and Deinit
     
-    convenience init(name: String, imageUrl: Image) {
+    convenience init(name: String, imageUrl: String) {
         self.init()
         self.name = name
         self.imageUrl = imageUrl
     }
     
-    required convenience public init?(map: Map) {
-        self.init()
-    }
-    
-    public func mapping(map: Map) {
-        imageUrl    <- map["display_sizes"]
-    }
+//    required convenience public init?(map: Map) {
+//        self.init()
+//    }
+//
+//    public func mapping(map: Map) {
+//        imageUrl    <- map["display_sizes"]
+//    }
     
 }

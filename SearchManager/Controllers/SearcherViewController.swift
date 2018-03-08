@@ -18,9 +18,12 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureSearchBar()
-        self.configureTableView()
-        
+//        self.configureSearchBar()
+//        self.configureTableView()
+        let api = ApiLayer(name: "cat")
+        let post = api.requestPhoto { post in
+            print(post)
+        }
     }
 
 

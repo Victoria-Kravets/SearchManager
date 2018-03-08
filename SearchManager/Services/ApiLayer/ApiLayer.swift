@@ -36,13 +36,12 @@ public class ApiLayer {
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest) {data,response,error in
-            print(data)
+
             if let responseData = data {
                 do{
                     let json = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments)
-                    self.bestPost = self.parsingData(data: json)
-                    completion(self.bestPost)
-                    print(self.bestPost)
+                    self.parsingData(data: json) { completion($0) }
+
                 } catch {
                     print("Could not serialize")
                 }
@@ -62,18 +61,16 @@ public class ApiLayer {
         return self.urlComponents?.url
     }
     
-    private func parsingData(data: Any?) -> Post? {
-        let posts:[String: Any]? =  data.flatMap(cast)
-        var bestPost: Post?
+    private func parsingData(data: Any?, completion: (Post?) -> ()) {
+        let data: [String: Any]? =  data.flatMap(cast)
+        let posts: [[String: Any]]? = (data?["images"]).flatMap(cast)
         
-        posts.do{
-            let resultPosts = Mapper<Post>().map(JSON:$0)
-            print(resultPosts)
-            let url = resultPosts?.imageUrl?.url
-            let image = url.apply { url in Image(url: url) }
-            self.bestPost = image.apply { image in Post(name: self.name, imageUrl: image) }
-        }
+        let post  = posts?[0]
+
+        let image: [[String: Any]]? = (post?["display_sizes"]).flatMap(cast)
+        let url: String? = (image?.first?["uri"]).flatMap(cast)
         
-        return bestPost
+        let bestPost = url.flatMap { Post.init(name: self.name, imageUrl: $0) }
+        completion(bestPost)
     }
 }

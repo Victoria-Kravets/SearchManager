@@ -31,11 +31,7 @@ public class NetworkService {
     // MARK: Public
     
     public func data(at url: URL, completion: @escaping (Result<Data, NetworkServiceError>) -> ()) -> NetworkTask {
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        urlRequest.addValue("27waaxucyynqc6yrdp9tup27", forHTTPHeaderField: "Api-Key")
-        
-        let dataTask = self.session.dataTask(with: urlRequest) { data, response, error in
+        let dataTask = self.session.dataTask(with: url) { data, response, error in
             print(data)
             DispatchQueue.global(qos: .background).async {
                 completion § Result(
