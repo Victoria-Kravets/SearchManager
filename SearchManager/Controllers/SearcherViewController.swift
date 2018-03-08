@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import RealmSwift
 
 class SearcherViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -72,6 +71,7 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func updateHistory() {
         self.posts = self.realmService.getDataFromStorage()
+        self.posts?.sort(by: { $0.id > $1.id })
     }
     
     private func configureTableView() {

@@ -16,7 +16,7 @@ public class Post: Object {
     
     @objc dynamic var name: String?
     @objc dynamic var imageUrl: String?
-    @objc dynamic var id: String?
+    @objc dynamic var id: String = ""
     
     // MARK: -
     // MARK: Init and Deinit
@@ -30,3 +30,9 @@ public class Post: Object {
         self.imageUrl = imageUrl
     }
 }
+
+public func ==(lhs: Post, rhs: Post) -> Bool {
+
+    return Int(lhs.id) == Int(rhs.id)
+}
+
