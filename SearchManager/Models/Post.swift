@@ -24,14 +24,5 @@ public class Post: Object {
         self.init()
         self.name = name
         self.imageUrl = imageUrl
-    }
-    
-//    required convenience public init?(map: Map) {
-//        self.init()
-//    }
-//
-//    public func mapping(map: Map) {
-//        imageUrl    <- map["display_sizes"]
-//    }
-    
+    }    
 }

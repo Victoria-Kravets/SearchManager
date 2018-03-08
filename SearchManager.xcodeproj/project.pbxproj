@@ -13,7 +13,6 @@
 		840E0BB620504CAE002B2BA4 /* LoadedImageModelTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E0BB520504CAE002B2BA4 /* LoadedImageModelTask.swift */; };
 		840E0BB920504CD0002B2BA4 /* CancellableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E0BB820504CD0002B2BA4 /* CancellableProperty.swift */; };
 		840E0BBB205051ED002B2BA4 /* ApiLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E0BBA205051ED002B2BA4 /* ApiLayer.swift */; };
-		84390A022050A58800DBCB15 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84390A012050A58800DBCB15 /* Image.swift */; };
 		8439F81E20508D8100BA5484 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439F81D20508D8100BA5484 /* NetworkService.swift */; };
 		8439F82020508FAD00BA5484 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439F81F20508FAD00BA5484 /* NetworkTask.swift */; };
 		8439F8222050913C00BA5484 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439F8212050913C00BA5484 /* Result.swift */; };
@@ -52,7 +51,6 @@
 		840E0BB520504CAE002B2BA4 /* LoadedImageModelTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadedImageModelTask.swift; sourceTree = "<group>"; };
 		840E0BB820504CD0002B2BA4 /* CancellableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableProperty.swift; sourceTree = "<group>"; };
 		840E0BBA205051ED002B2BA4 /* ApiLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLayer.swift; sourceTree = "<group>"; };
-		84390A012050A58800DBCB15 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		8439F81D20508D8100BA5484 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8439F81F20508FAD00BA5484 /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
 		8439F8212050913C00BA5484 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				8440EC3B20509FC900B399DA /* Post.swift */,
-				84390A012050A58800DBCB15 /* Image.swift */,
 				840E0BB420504C9F002B2BA4 /* ImageModel */,
 			);
 			path = Models;
@@ -501,7 +498,6 @@
 				8439F8222050913C00BA5484 /* Result.swift in Sources */,
 				84C92FF3204FF7CE005D3F38 /* AppDelegate.swift in Sources */,
 				840E0BB1205028F9002B2BA4 /* DataCell.swift in Sources */,
-				84390A022050A58800DBCB15 /* Image.swift in Sources */,
 				8440EC3C20509FC900B399DA /* Post.swift in Sources */,
 				8439F8242050927600BA5484 /* Operators.swift in Sources */,
 				84D8C2732050242D00DAF3D2 /* Functions.swift in Sources */,
