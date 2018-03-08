@@ -29,6 +29,7 @@ public class ApiLayer {
     // MARK: Public
     
     public func requestPhoto(_ completion: @escaping (Post?) -> ()) {
+
         let url = self.createURLWithComponents()
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "GET"
@@ -36,12 +37,16 @@ public class ApiLayer {
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest) {data,response,error in
-
+  
             if let responseData = data {
                 do{
                     let json = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments)
-                    self.parsingData(data: json) { completion($0) }
-
+                    self.parsingData(data: json) { post in
+                        DispatchQueue.main.async {
+                            completion(post)
+                        }
+                    }
+                    
                 } catch {
                     print("Could not serialize")
                 }

@@ -18,28 +18,31 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     var textField: UITextField?
     var realmService = RealmService()
-   
+    var posts: [Post]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureTextField()
         self.configureTableView()
-        
+        self.updateHistory()
     }
-   
+
     // MARK: -
     // MARK: TableView
   
     func numberOfSections(in tableView: UITableView) -> Int {
-     return 1
+        
+        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 10
+      
+        return posts?.count ?? 0
     }
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DataCell {
-            cell.fill(name: "1")
+            cell.post = posts?[indexPath.row]
  
             return cell
         } else {
@@ -52,13 +55,23 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let text = self.textField?.text
-        text.do(self.requestPost(text:))
+        
+        self.requestPost(text: text) {
+            self.updateHistory()
+            self.tableView?.reloadData()
+        }
+        
         self.textField?.text = nil
+        
         return true
     }
  
     // MARK: -
     // MARK: Private
+    
+    private func updateHistory() {
+        self.posts = self.realmService.getDataFromStorage()
+    }
     
     private func configureTableView() {
         self.tableView?.delegate = self
@@ -82,13 +95,14 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         self.textField.do(self.view.addSubview(_:))
     }
     
-    private func requestPost(text: String) {
-        let api = ApiLayer(name: text)
-        let post = api.requestPhoto { post in
-            post.do { self.realmService.writeDataInStorage(object: $0) }
-            // write to Realm
-            print(post)
+    private func requestPost(text: String?, completion: @escaping () -> ()) {
+        let api = text.apply { ApiLayer(name: $0) }
+        let post = api?.requestPhoto { [weak self] post in
+            
+            post.do { self?.realmService.writeDataInStorage(object: $0) }
+            completion()
         }
+        
     }
 }
 

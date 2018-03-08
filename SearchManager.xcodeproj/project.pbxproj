@@ -22,6 +22,8 @@
 		8445C43E20516642006FCD68 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445C43D20516642006FCD68 /* Realm+Extensions.swift */; };
 		8445C44020516734006FCD68 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445C43F20516734006FCD68 /* WeakBox.swift */; };
 		8445C44420516920006FCD68 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445C44320516920006FCD68 /* RealmService.swift */; };
+		8445C447205170FC006FCD68 /* ImageDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445C446205170FC006FCD68 /* ImageDownloadService.swift */; };
+		8445C44920517408006FCD68 /* NSLocking+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445C44820517408006FCD68 /* NSLocking+Extensions.swift */; };
 		84C92FF3204FF7CE005D3F38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92FF2204FF7CE005D3F38 /* AppDelegate.swift */; };
 		84C92FF5204FF7CE005D3F38 /* SearcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92FF4204FF7CE005D3F38 /* SearcherViewController.swift */; };
 		84C92FF8204FF7CE005D3F38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C92FF6204FF7CE005D3F38 /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 		8445C43D20516642006FCD68 /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		8445C43F20516734006FCD68 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		8445C44320516920006FCD68 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		8445C446205170FC006FCD68 /* ImageDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadService.swift; sourceTree = "<group>"; };
+		8445C44820517408006FCD68 /* NSLocking+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLocking+Extensions.swift"; sourceTree = "<group>"; };
 		84C92FEF204FF7CE005D3F38 /* SearchManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C92FF2204FF7CE005D3F38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84C92FF4204FF7CE005D3F38 /* SearcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 		8432127720500BFA00B6B1AD /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8445C445205170D8006FCD68 /* ImageDownloadService */,
 				8445C44220516901006FCD68 /* RealmServices */,
 				8439F81C20508D5400BA5484 /* NetworkService */,
 				840E0BBC20505885002B2BA4 /* ApiLayer */,
@@ -212,6 +217,14 @@
 				8445C44320516920006FCD68 /* RealmService.swift */,
 			);
 			path = RealmServices;
+			sourceTree = "<group>";
+		};
+		8445C445205170D8006FCD68 /* ImageDownloadService */ = {
+			isa = PBXGroup;
+			children = (
+				8445C446205170FC006FCD68 /* ImageDownloadService.swift */,
+			);
+			path = ImageDownloadService;
 			sourceTree = "<group>";
 		};
 		84C92FE6204FF7CE005D3F38 = {
@@ -275,6 +288,7 @@
 			children = (
 				84D8C2752050247200DAF3D2 /* Optional+Extensions.swift */,
 				8445C43D20516642006FCD68 /* Realm+Extensions.swift */,
+				8445C44820517408006FCD68 /* NSLocking+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -518,7 +532,9 @@
 				840E0BB620504CAE002B2BA4 /* LoadedImageModelTask.swift in Sources */,
 				84D8C2762050247200DAF3D2 /* Optional+Extensions.swift in Sources */,
 				840E0BB320504AD4002B2BA4 /* ImageModel.swift in Sources */,
+				8445C44920517408006FCD68 /* NSLocking+Extensions.swift in Sources */,
 				840E0BBB205051ED002B2BA4 /* ApiLayer.swift in Sources */,
+				8445C447205170FC006FCD68 /* ImageDownloadService.swift in Sources */,
 				84C92FF5204FF7CE005D3F38 /* SearcherViewController.swift in Sources */,
 				8439F8222050913C00BA5484 /* Result.swift in Sources */,
 				8445C44020516734006FCD68 /* WeakBox.swift in Sources */,

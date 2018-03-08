@@ -19,8 +19,13 @@ public class RealmService {
         Realm.write { $0.add(object) }
     }
     
-    public func getDataFromStorage() -> Results<Post>? {
-        
-        return Realm.current?.objects(Post.self)
+    public func getDataFromStorage() -> [Post]? {
+        let objectsResult = Realm.current?.objects(Post.self)
+        var objects = [Post]()
+        for object in objectsResult! {
+            print(object)
+            objects.append(object)
+        }
+        return objects
     }
 }

@@ -32,7 +32,7 @@ public class NetworkService {
     
     public func data(at url: URL, completion: @escaping (Result<Data, NetworkServiceError>) -> ()) -> NetworkTask {
         let dataTask = self.session.dataTask(with: url) { data, response, error in
-            print(data)
+
             DispatchQueue.global(qos: .background).async {
                 completion § Result(
                     value: data,
