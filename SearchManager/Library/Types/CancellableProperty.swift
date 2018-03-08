@@ -17,6 +17,9 @@ public protocol Cancellable {
 
 public class CancellableProperty {
     
+    // MARK: -
+    // MARK: Properties
+    
     public var value: Cancellable? {
         willSet { value?.cancel() }
     }

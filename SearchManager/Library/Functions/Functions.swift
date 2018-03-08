@@ -46,12 +46,14 @@ public func flip<A, B, C>(_ f: @escaping (A, B) -> C) -> (B, A) -> C {
     return { f($1, $0) }
 }
 
-public func scope(_ action: () -> ()) {
-    action()
-}
-
 public func call<Value>(_ action: () -> Value) -> Value {
     return action()
 }
 
-
+public func sideEffect<Value>(_ action: @escaping (Value) -> ()) -> (Value) -> Value {
+    return {
+        action($0)
+        
+        return $0
+    }
+}
