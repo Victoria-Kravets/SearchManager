@@ -19,6 +19,7 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     var textField: UITextField?
     var realmService = RealmService()
     var posts: [Post]?
+    private var text: String? = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,7 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: TextField
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let text = self.textField?.text
+        self.text = self.textField?.text
         
         self.requestPost(text: text) {
             self.updateHistory()
@@ -97,12 +98,22 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func requestPost(text: String?, completion: @escaping () -> ()) {
         let api = text.apply { ApiLayer(name: $0) }
-        let post = api?.requestPhoto { [weak self] post in
+        let post = api?.requestPhoto { post in
             
-            post.do { self?.realmService.writeDataInStorage(object: $0) }
+            if post == nil {
+                self.text.do(self.showAlertMessage(name:))
+            }
+            
+            post.do { self.realmService.writeDataInStorage(object: $0) }
             completion()
         }
+    }
+    
+    private func showAlertMessage(name: String) {
         
+        let alert = UIAlertController(title: "Sorry!", message: "We couldn't find any image by name: \(name)", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

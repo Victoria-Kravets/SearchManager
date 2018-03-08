@@ -69,6 +69,10 @@ public class ApiLayer {
     private func parsingData(data: Any?, completion: (Post?) -> ()) {
         let data: [String: Any]? =  data.flatMap(cast)
         let posts: [[String: Any]]? = (data?["images"]).flatMap(cast)
+        if posts?.count == 0 {
+            completion(nil)
+            return
+        }
         
         let post  = posts?[0]
 
