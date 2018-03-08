@@ -15,15 +15,17 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView?
     
+    var historyLabel: UILabel?
     var textField: UITextField?
+    
     var realmService = RealmService()
     var posts: [Post]?
+    
     private var text: String? = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureTextField()
-        self.configureTableView()
+        self.configureUI()
         self.updateHistory()
     }
 
@@ -74,11 +76,25 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         self.posts?.sort(by: { $0.id > $1.id })
     }
     
+    private func configureUI() {
+        self.configureTextField()
+        self.configureTableView()
+        self.confugureLabal()
+    }
+    
+    private func confugureLabal() {
+        
+        let label = UILabel(frame: CGRect(x: 40, y: 91, width: 200, height: 21))
+        label.text = "History"
+        label.textColor = UIColor.gray
+        self.view.addSubview(label)
+    }
+    
     private func configureTableView() {
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
       
-        self.tableView?.frame = CGRect(x: 20, y: 91, width: 415, height: 550)
+        self.tableView?.frame = CGRect(x: 20, y: 122, width: 415, height: 550)
         self.tableView.do(self.view.addSubview(_:))
     }
     
@@ -88,7 +104,7 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
 
         self.textField?.placeholder = "Enter text here"
         self.textField?.borderStyle = UITextBorderStyle.roundedRect
-        self.textField?.backgroundColor = UIColor.gray
+        self.textField?.backgroundColor = UIColor.lightGray
         self.textField?.textColor = UIColor.white
         
         self.textField?.returnKeyType = UIReturnKeyType.done

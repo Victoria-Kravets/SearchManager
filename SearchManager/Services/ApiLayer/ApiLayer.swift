@@ -30,40 +30,42 @@ public class ApiLayer {
     
     public func requestPhoto(_ completion: @escaping (Post?) -> ()) {
 
-        let url = self.createURLWithComponents()
-        let request = NSMutableURLRequest(url: url!)
-        request.httpMethod = "GET"
-        request.addValue("27waaxucyynqc6yrdp9tup27", forHTTPHeaderField: "Api-Key")
-        
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest) {data,response,error in
-  
-            if let responseData = data {
-                do{
-                    let json = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments)
-                    self.parsingData(data: json) { post in
-                        DispatchQueue.main.async {
-                            completion(post)
+        self.createURLWithComponents() { url in
+            let request = NSMutableURLRequest(url: url)
+            
+            request.httpMethod = "GET"
+            request.addValue("27waaxucyynqc6yrdp9tup27", forHTTPHeaderField: "Api-Key")
+            
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: request as URLRequest) {data,response,error in
+                
+                if let responseData = data {
+                    do{
+                        let json = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments)
+                        self.parsingData(data: json) { post in
+                            DispatchQueue.main.async {
+                                completion(post)
+                            }
                         }
+                        
+                    } catch {
+                        print("Could not serialize")
                     }
-                    
-                } catch {
-                    print("Could not serialize")
                 }
             }
+            
+            dataTask.resume()
         }
         
-        dataTask.resume()
     }
     
     // MARK: -
     // MARK: Private
     
-    private func createURLWithComponents() -> URL? {
+    private func createURLWithComponents(_ completion: (URL) -> ()) {
         let param = NSURLQueryItem(name: "phrase", value: self.name)
         self.urlComponents?.queryItems = [param as URLQueryItem]
-        
-        return self.urlComponents?.url
+        self.urlComponents?.url.do(completion)
     }
     
     private func parsingData(data: Any?, completion: (Post?) -> ()) {

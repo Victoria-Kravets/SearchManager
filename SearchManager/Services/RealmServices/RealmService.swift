@@ -22,11 +22,12 @@ public class RealmService {
     public func getDataFromStorage() -> [Post]? {
         let objectsResult = Realm.current?.objects(Post.self)
         var objects = [Post]()
-        
-        for object in objectsResult! {
-            objects.append(object)
+        objectsResult.do { objectsResult in
+            for object in objectsResult {
+                objects.append(object)
+            }
         }
-        
+
         return objects
     }
 }
