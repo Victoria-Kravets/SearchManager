@@ -26,6 +26,7 @@ public class RealmService {
             print(object)
             objects.append(object)
         }
+        
         return objects
     }
 }

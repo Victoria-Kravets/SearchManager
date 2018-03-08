@@ -74,8 +74,8 @@ public class ApiLayer {
 
         let image: [[String: Any]]? = (post?["display_sizes"]).flatMap(cast)
         let url: String? = (image?.first?["uri"]).flatMap(cast)
-        
         let bestPost = url.flatMap { Post.init(name: self.name, imageUrl: $0) }
+        
         completion(bestPost)
     }
 }
