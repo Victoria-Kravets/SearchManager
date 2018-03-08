@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import RealmSwift
 
 class SearcherViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -16,6 +17,7 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView?
     
     var textField: UITextField?
+    var realmService = RealmService()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +85,7 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     private func requestPost(text: String) {
         let api = ApiLayer(name: text)
         let post = api.requestPhoto { post in
+            post.do { self.realmService.writeDataInStorage(object: $0) }
             // write to Realm
             print(post)
         }

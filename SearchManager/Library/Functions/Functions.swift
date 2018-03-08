@@ -54,4 +54,10 @@ public func call<Value>(_ action: () -> Value) -> Value {
     return action()
 }
 
-
+public func sideEffect<Value>(_ action: @escaping (Value) -> ()) -> (Value) -> Value {
+    return {
+        action($0)
+        
+        return $0
+    }
+}
