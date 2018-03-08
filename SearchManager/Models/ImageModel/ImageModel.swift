@@ -19,12 +19,12 @@ public class ImageModel {
     public private(set) weak var image: UIImage?
     public let imageLoadService: ImageDownloadService
     
-    
-    private let lock = NSRecursiveLock()
-    private var cancellable: Cancellable = LoadedImageModelTask()
     public var isLoaded: Bool {
         return self.image != nil
     }
+    
+    private let lock = NSRecursiveLock()
+    private var cancellable: Cancellable = LoadedImageModelTask()
 
     // MARK: -
     // MARK: Init and Deinit

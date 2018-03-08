@@ -47,7 +47,6 @@ public class ApiLayer {
                                 completion(post)
                             }
                         }
-                        
                     } catch {
                         print("Could not serialize")
                     }
@@ -56,7 +55,6 @@ public class ApiLayer {
             
             dataTask.resume()
         }
-        
     }
     
     // MARK: -

@@ -7,6 +7,7 @@
 //
 
 public extension Optional {
+    
     public func apply<Result>(_ transform: ((Wrapped) -> Result)?) -> Result? {
         return self.flatMap { value in
             transform.map { $0(value) }

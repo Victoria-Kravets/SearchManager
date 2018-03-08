@@ -64,7 +64,6 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         self.textField?.text = nil
-        
         return true
     }
  
@@ -83,9 +82,9 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func confugureLabal() {
-        
         let label = UILabel(frame: CGRect(x: 40, y: 91, width: 200, height: 21))
         label.text = "History"
+        
         label.textColor = UIColor.gray
         self.view.addSubview(label)
     }

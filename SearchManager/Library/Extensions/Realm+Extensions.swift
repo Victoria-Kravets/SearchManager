@@ -11,7 +11,7 @@ import RealmSwift
 
 extension Realm {
     private struct Key {
-        static let realm =  "com.realm.thread.key"
+        static let realm = "com.realm.thread.key"
     }
     
     public static var current: Realm? {

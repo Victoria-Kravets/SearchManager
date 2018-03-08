@@ -44,7 +44,7 @@ public class DataCell: UITableViewCell {
     }
     
     private func configureImage() {
-        var imageLoadService = ImageDownloadService(networkService: NetworkService(session: URLSession(configuration: .default)))
+        let imageLoadService = ImageDownloadService(networkService: NetworkService(session: URLSession(configuration: .default)))
             
         photoImage = UIImageView(frame: CGRect(x: 30, y: 10, width: 50, height: 50))
         self.photoImage.do(self.addSubview(_:))
