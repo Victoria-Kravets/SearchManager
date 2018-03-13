@@ -12,8 +12,8 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: -
     // MARK: Properties
-    
-    @IBOutlet weak var tableView: UITableView?
+
+    var tableView: UITableView?
     
     var historyLabel: UILabel?
     var textField: UITextField?
@@ -43,13 +43,18 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     }
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DataCell {
+        if let cell  = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DataCell {
             cell.post = posts?[indexPath.row]
- 
+
             return cell
         } else {
             return UITableViewCell()
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 100
     }
     
     // MARK: -
@@ -76,9 +81,14 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func configureUI() {
+        self.confugureView()
         self.configureTextField()
         self.configureTableView()
         self.confugureLabal()
+    }
+    
+    private func confugureView() {
+        self.view.backgroundColor = UIColor.white
     }
     
     private func confugureLabal() {
@@ -86,14 +96,16 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         label.text = "History"
         
         label.textColor = UIColor.gray
-        self.view.addSubview(label)
+        self.view?.addSubview(label)
     }
     
     private func configureTableView() {
+        self.tableView = UITableView(frame: CGRect(x: 20, y: 122, width: 415, height: 600), style: .plain)
+        self.tableView?.estimatedRowHeight = 100 //
+        self.tableView?.rowHeight = UITableViewAutomaticDimension//
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
-      
-        self.tableView?.frame = CGRect(x: 20, y: 122, width: 415, height: 550)
+        self.tableView?.register(DataCell.self, forCellReuseIdentifier: "cell")
         self.tableView.do(self.view.addSubview(_:))
     }
     
@@ -105,7 +117,6 @@ class SearcherViewController: UIViewController, UITableViewDelegate, UITableView
         self.textField?.borderStyle = UITextBorderStyle.roundedRect
         self.textField?.backgroundColor = UIColor.lightGray
         self.textField?.textColor = UIColor.white
-        
         self.textField?.returnKeyType = UIReturnKeyType.done
         
         self.textField.do(self.view.addSubview(_:))
