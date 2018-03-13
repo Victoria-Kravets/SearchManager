@@ -13,9 +13,9 @@ public class DataCell: UITableViewCell {
     // MARK: -
     // MARK: Properties
     
-    public var photoImage: UIImageView?
+    public private(set) var photoImage: UIImageView?
     
-    @IBOutlet weak var nameLabel: UILabel?
+    public private(set) var nameLabel: UILabel?
     
     public var post: Post? {
         didSet {
@@ -25,6 +25,12 @@ public class DataCell: UITableViewCell {
     
     // MARK: -
     // MARK: Public
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        self.nameLabel?.text = nil
+        self.photoImage  = nil
+    }
     
     public func fill(with post: Post?) {
         self.configureCell()
@@ -40,13 +46,14 @@ public class DataCell: UITableViewCell {
     }
     
     private func configureLabel() {
-        self.nameLabel?.frame = CGRect(x: 120, y: 20, width: 240, height: 15)
+        self.nameLabel = UILabel(frame: CGRect(x: 140, y: 10, width: 240, height: 90))
+        self.nameLabel.do(self.addSubview(_:))
     }
     
     private func configureImage() {
         let imageLoadService = ImageDownloadService(networkService: NetworkService(session: URLSession(configuration: .default)))
             
-        photoImage = UIImageView(frame: CGRect(x: 30, y: 10, width: 50, height: 50))
+        photoImage = UIImageView(frame: CGRect(x: 30, y: 10, width: 90, height: 90))
         self.photoImage.do(self.addSubview(_:))
         
         let imageModel = self.post?.imageUrl.flatMap(URL.init(string:)).map { ImageModel.init(url: $0, imageLoadService: imageLoadService) }
